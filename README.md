@@ -1,5 +1,5 @@
 # Bajalang App
-Location Based app with architecture component MVVM (Model View ViewModel) that use a-rest as a service
+Location Based app with architecture component `MVVM` (Model View ViewModel) that use a-rest as a service
 
 ## Library
 
@@ -12,9 +12,8 @@ Location Based app with architecture component MVVM (Model View ViewModel) that 
   - [Anko](https://github.com/Kotlin/anko)
 
 ## TODO List
-  - [ ] Implement Offline mode.
-  - [ ] Restructure DI.
   - [ ] Error Handling.
+  - [ ] Implement Offline mode.
   - [ ] Clean up code style.
 
 ## REST Service

@@ -3,7 +3,9 @@ package id.asmith.bajalangclean.di
 import dagger.Component
 import id.asmith.bajalangclean.di.module.AppModule
 import id.asmith.bajalangclean.di.module.RemoteModule
+import id.asmith.bajalangclean.ui.main.MainActivity
 import id.asmith.bajalangclean.ui.splash.SplashActivity
+import id.asmith.bajalangclean.ui.started.GetStartedActivity
 import javax.inject.Singleton
 
 
@@ -23,5 +25,9 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(target: SplashActivity)
+
+    fun inject(target: GetStartedActivity)
+
+    fun inject(target: MainActivity)
 
 }

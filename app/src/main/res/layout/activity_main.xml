@@ -6,4 +6,45 @@
     android:layout_height="match_parent"
     tools:context="id.asmith.bajalangclean.ui.main.MainActivity">
 
+    <TextView
+        android:id="@+id/thisIsUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="USER FULL NAME"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/thisIsCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="CURRENT CITY"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thisIsUserName" />
+
+    <TextView
+        android:id="@+id/thisIsLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="LATITUDE"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thisIsCity" />
+
+    <TextView
+        android:id="@+id/thisIsLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="LONGITUDE"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thisIsLatitude" />
+
 </android.support.constraint.ConstraintLayout>

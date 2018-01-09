@@ -1,6 +1,8 @@
 package id.asmith.bajalangclean.ui.splash
 
 import android.arch.lifecycle.ViewModel
+import id.asmith.bajalangclean.util.AppConstants.USER_LOG_STATUS
+import id.asmith.bajalangclean.util.PreferencesUtil
 import java.util.*
 
 
@@ -13,13 +15,17 @@ import java.util.*
 class SplashViewModel : ViewModel() {
 
     private var mNavigator: SplashNavigation? = null
+    private var mPrefs: PreferencesUtil? = null
 
-    fun setNavigator(navigator: SplashNavigation) {
-        this.mNavigator = navigator
+    fun setNavigation(navigator: SplashNavigation) { this.mNavigator = navigator }
+    fun setPrefs(preferences: PreferencesUtil) { this.mPrefs = preferences }
+
+    private fun isUserDataExist(): Boolean{
+        return mPrefs!!.getBoolean(USER_LOG_STATUS,
+                            false)
     }
 
     fun startTask() {
-
         Timer().schedule(object : TimerTask() {
             override fun run() {
                 try {
@@ -33,13 +39,13 @@ class SplashViewModel : ViewModel() {
                 }
             }
         }, 2000)
-
     }
 
     private fun changeActivity() {
-
-        mNavigator!!.openMainActivity()
-
+        if (isUserDataExist())
+            mNavigator!!.openMainActivity()
+        else
+            mNavigator!!.openStartedActivity()
     }
 
 }

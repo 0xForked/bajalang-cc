@@ -36,6 +36,7 @@ class AppModule(private val bajalangApp: BajalangApp) {
             .getSharedPreferences("", Context.MODE_PRIVATE)
 
     @Provides
+    @Singleton
     fun provideSchedulerProvider(): SchedulerProviderNavigation = SchedulerProvider()
 
 

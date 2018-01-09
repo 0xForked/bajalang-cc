@@ -6,14 +6,14 @@ import android.support.v7.app.AppCompatActivity
 import id.asmith.bajalangclean.BajalangApp
 import id.asmith.bajalangclean.R
 import id.asmith.bajalangclean.ui.main.MainActivity
+import id.asmith.bajalangclean.ui.started.GetStartedActivity
 import id.asmith.bajalangclean.util.PreferencesUtil
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity(), SplashNavigation {
 
-    @Inject
-    lateinit var mPrefsUtil: PreferencesUtil
+    @Inject lateinit var mPrefsUtil: PreferencesUtil
 
     private val mViewModel: SplashViewModel by lazy {
         ViewModelProviders.of(this).get(SplashViewModel::class.java)
@@ -25,23 +25,26 @@ class SplashActivity : AppCompatActivity(), SplashNavigation {
 
         inject()
 
-        mViewModel.setNavigator(this)
+        mViewModel.setNavigation(this)
+        mViewModel.setPrefs(mPrefsUtil)
         mViewModel.startTask()
     }
 
-    override fun openMainActivity() {
+    override fun openStartedActivity(){
+        startActivity<GetStartedActivity>()
+        finish()
+    }
 
+    override fun openMainActivity() {
         startActivity<MainActivity>()
         finish()
-
     }
 
     private fun inject() {
-
         BajalangApp
                 .mInstance
                 .mAppComponent
                 .inject(this)
-
     }
+
 }

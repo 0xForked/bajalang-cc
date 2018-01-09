@@ -9,6 +9,8 @@ package id.asmith.bajalangclean.ui.splash
 
 interface SplashNavigation {
 
+    fun openStartedActivity()
+
     fun openMainActivity()
 
 }

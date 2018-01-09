@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/thirty_dp"
+    android:background="@color/white"
+    tools:context="id.asmith.bajalangclean.ui.started.GetStartedActivity">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/image_started_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/save_latitude"
+        android:visibility="gone"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/save_longitude"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/text_started_current"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_location"
+        android:textSize="@dimen/twenty_sp"
+        android:layout_marginBottom="@dimen/fifteen_sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/text_started_location"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_started_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/thirty_dp"
+        android:text="@string/user_location"
+        android:textSize="@dimen/thirty_sp"
+        android:visibility="gone"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/input_started_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/input_started_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sixty_dp"
+        android:hint="@string/enter_your_name"
+        android:visibility="gone"
+        android:textSize="@dimen/twenty_sp"
+        android:padding="@dimen/ten_dp"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_started_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/twenty_five_sp"
+        android:text="@string/button_next"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/thirty_dp"
+        android:layout_marginEnd="@dimen/thirty_dp"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
