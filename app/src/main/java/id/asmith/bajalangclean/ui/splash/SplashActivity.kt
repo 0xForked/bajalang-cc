@@ -25,9 +25,9 @@ class SplashActivity : AppCompatActivity(), SplashNavigation {
 
         inject()
 
-        mViewModel.setNavigation(this)
-        mViewModel.setPrefs(mPrefsUtil)
+        mViewModel.splashViewModel(this, mPrefsUtil)
         mViewModel.startTask()
+
     }
 
     override fun openStartedActivity(){

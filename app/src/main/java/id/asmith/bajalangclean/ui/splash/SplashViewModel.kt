@@ -17,8 +17,10 @@ class SplashViewModel : ViewModel() {
     private var mNavigator: SplashNavigation? = null
     private var mPrefs: PreferencesUtil? = null
 
-    fun setNavigation(navigator: SplashNavigation) { this.mNavigator = navigator }
-    fun setPrefs(preferences: PreferencesUtil) { this.mPrefs = preferences }
+    fun splashViewModel(navigator: SplashNavigation, preferences: PreferencesUtil) {
+        this.mNavigator = navigator
+        this.mPrefs = preferences
+    }
 
     private fun isUserDataExist(): Boolean{
         return mPrefs!!.getBoolean(USER_LOG_STATUS,

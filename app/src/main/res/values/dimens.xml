@@ -26,6 +26,7 @@
     <dimen name="one_hundred_forty_dp">140dp</dimen>
     <dimen name="one_hundred_fifty_dp">150dp</dimen>
     <dimen name="two_hundred_dp">200dp</dimen>
+    <dimen name="three_hundred_dp">300dp</dimen>
 
     <!-- font -->
     <dimen name="five_sp">5sp</dimen>
@@ -46,5 +47,6 @@
     <dimen name="one_hundred_twenty_sp">120sp</dimen>
     <dimen name="one_hundred_thirty_sp">130sp</dimen>
     <dimen name="one_hundred_forty_sp">140sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

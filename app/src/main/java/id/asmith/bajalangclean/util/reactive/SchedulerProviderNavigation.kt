@@ -15,8 +15,6 @@ interface SchedulerProviderNavigation {
 
     fun ui(): Scheduler
 
-    fun computation(): Scheduler
-
-    fun io(): Scheduler
+    fun multi(): Scheduler
 
 }

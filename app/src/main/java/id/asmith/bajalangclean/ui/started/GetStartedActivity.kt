@@ -2,84 +2,50 @@ package id.asmith.bajalangclean.ui.started
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.pm.PackageManager
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.location.LocationManager
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import id.asmith.bajalangclean.BajalangApp
 import id.asmith.bajalangclean.R
 import id.asmith.bajalangclean.ui.main.MainActivity
 import id.asmith.bajalangclean.util.PreferencesUtil
-import kotlinx.android.synthetic.main.activity_get_started.*
+import kotlinx.android.synthetic.main.activity_started.*
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.yesButton
 import javax.inject.Inject
 
 class GetStartedActivity : AppCompatActivity(), StartedNavigation {
 
-    private var locationManager: LocationManager? = null
+    private var mLocationManager: LocationManager? = null
 
     @Inject lateinit var mPrefsUtil: PreferencesUtil
 
     private val mViewModel: StartedViewModel by lazy {
-        ViewModelProviders.of(this).get(StartedViewModel::class.java)
+        ViewModelProviders
+                .of(this)
+                .get(StartedViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_get_started)
+        setContentView(R.layout.activity_started)
 
         inject()
 
-        mViewModel.setContext(this)
-        mViewModel.setNavigation(this)
-        mViewModel.setPrefs(mPrefsUtil)
+        mViewModel.startedViewModel(this, this, mPrefsUtil)
 
-        mViewModel.getCity().observe(this, Observer {
-            text_started_location.text = it.toString()
-        })
+        mLocationManager = this.getSystemService(LOCATION_SERVICE) as LocationManager
 
-        mViewModel.getLatitude().observe(this, Observer {
-            save_latitude.text = it.toString()
-        })
+        mViewModel.getLocationProvider(mLocationManager!!)
 
-        mViewModel.getLongitude().observe(this, Observer {
-            save_longitude.text = it.toString()
-        })
+        viewModelObserver()
 
-        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
-        if (ActivityCompat.checkSelfPermission(this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this,
-                android.Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return
-        }
+        clickListener()
 
-        //want to use LocationManager.NETWORK_PROVIDER or
-        //LocationManager.GPS_PROVIDER its ok, up to you!
-        locationManager!!.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER,
-                90000,
-                10F,
-                mViewModel.locationListener)
-
-        text_started_next.apply {
-            paintFlags = (text_started_next.paintFlags or Paint.UNDERLINE_TEXT_FLAG)
-            setTypeface(null, Typeface.BOLD)
-            setOnClickListener {
-                val name = input_started_name.text.toString()
-                val city = text_started_location.text.toString()
-                val latitude = save_latitude.text.toString()
-                val longitude = save_longitude.text.toString()
-                if (name.isEmpty()) input_started_name.error = getString(R.string.empty_name)
-                if (!name.isEmpty()) mViewModel.savePrefs(name, latitude, longitude, city)
-            }
-        }
     }
 
     override fun viewItemShow() {
@@ -107,6 +73,64 @@ class GetStartedActivity : AppCompatActivity(), StartedNavigation {
     override fun startMainActivity(){
         startActivity<MainActivity>()
         finish()
+    }
+
+    private fun clickListener(){
+        text_started_next.apply {
+            paintFlags = (text_started_next.paintFlags or Paint.UNDERLINE_TEXT_FLAG)
+            setTypeface(null, Typeface.BOLD)
+            setOnClickListener {
+                val name = input_started_name.text.toString()
+                val city = text_started_location.text.toString()
+                val latitude = save_latitude.text.toString()
+                val longitude = save_longitude.text.toString()
+                if (name.isEmpty()) input_started_name.error = getString(R.string.empty_name)
+                if (!name.isEmpty()) mViewModel.savePrefs(name, latitude, longitude, city)
+            }
+        }
+
+        text_started_location.apply {
+            paintFlags = (text_started_location.paintFlags or Paint.UNDERLINE_TEXT_FLAG)
+            setTypeface(null, Typeface.BOLD)
+            setOnClickListener {
+                alert {
+                    title = "Location detail"
+                    message =   """
+                            Country : ${save_county.text}
+                            State : ${save_state.text}
+                            City : ${text_started_location.text}
+                            District : ${save_district.text}
+                            Urban Village : ${save_urban_village.text}
+                            lat lon : ${save_latitude.text}, ${save_longitude.text}
+                        """.trimIndent()
+                    yesButton {  }
+                }.show()
+            }
+        }
+    }
+
+    private fun viewModelObserver(){
+        mViewModel.getCurrentCity().observe(this, Observer {
+            text_started_location.text = it.toString()
+        })
+        mViewModel.getCurrentCountry().observe(this, Observer {
+            save_county.text = it.toString()
+        })
+        mViewModel.getCurrentState().observe(this, Observer {
+            save_state.text = it.toString()
+        })
+        mViewModel.getCurrentDistrict().observe(this, Observer {
+            save_district.text = it.toString()
+        })
+        mViewModel.getCurrentUrbanVillage().observe(this, Observer {
+            save_urban_village.text = it.toString()
+        })
+        mViewModel.getCurrentLatitude().observe(this, Observer {
+            save_latitude.text = it.toString()
+        })
+        mViewModel.getCurrentLongitude().observe(this, Observer {
+            save_longitude.text = it.toString()
+        })
     }
 
     private fun inject(){

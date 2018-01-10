@@ -15,16 +15,8 @@ import io.reactivex.schedulers.Schedulers
 
 class SchedulerProvider : SchedulerProviderNavigation {
 
-    override fun ui(): Scheduler {
-        return AndroidSchedulers.mainThread()
-    }
+    override fun ui(): Scheduler = AndroidSchedulers.mainThread()
 
-    override fun computation(): Scheduler {
-        return Schedulers.computation()
-    }
-
-    override fun io(): Scheduler {
-        return Schedulers.io()
-    }
+    override fun multi(): Scheduler = Schedulers.newThread()
 
 }
