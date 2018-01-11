@@ -5,6 +5,12 @@ Google Maps JSON for
 [Manado](http://maps.googleapis.com/maps/api/geocode/json?latlng=1.5408144,124.7144464&sensor=true). 
 FYI: Current data in database are available just in this city - Kotamobagu and Manado 
 
+</br>
+<p align="center">
+   <img src="https://github.com/aasumitro/a-droid-cc/blob/master/art/adroidcc.gif" width="250">
+</p>
+</br>
+
 ## Library
 
   - [Architecture Component](https://developer.android.com/topic/libraries/architecture/adding-components.html)
