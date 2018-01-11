@@ -1,5 +1,5 @@
 # Bajalang App
-Location Based app with architecture component `MVVM` (Model View ViewModel) that use a-rest as a service
+Location Based app with architecture component `MVVM` (Model View ViewModel) that use a-rest as a service <br>
 Google Maps JSON for 
 [Kota Kotamobagu](http://maps.googleapis.com/maps/api/geocode/json?latlng=0.7368422,124.3155934&sensor=true), 
 [Manado](http://maps.googleapis.com/maps/api/geocode/json?latlng=1.5408144,124.7144464&sensor=true). 
@@ -7,7 +7,7 @@ FYI: Current data in database are available just in this city - Kotamobagu and M
 
 </br>
 <p align="center">
-   <img src="https://github.com/aasumitro/a-droid-cc/blob/master/art/adroidcc.gif" width="250">
+   <img src="https://github.com/aasumitro/bajalang-cc/blob/master/art/bajalang.gif" width="250">
 </p>
 </br>
 
