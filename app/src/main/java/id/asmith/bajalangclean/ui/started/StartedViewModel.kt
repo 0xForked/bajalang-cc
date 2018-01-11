@@ -10,11 +10,11 @@ import android.location.Geocoder
 import android.location.LocationManager
 import android.support.v4.app.ActivityCompat
 import android.util.Log
+import id.asmith.bajalangclean.util.AppConstants.DEVICE_LAT
+import id.asmith.bajalangclean.util.AppConstants.DEVICE_LON
 import id.asmith.bajalangclean.util.AppConstants.USER_CURRENT_CITY
-import id.asmith.bajalangclean.util.AppConstants.USER_LAT
 import id.asmith.bajalangclean.util.AppConstants.USER_LOG_IDENTITY
 import id.asmith.bajalangclean.util.AppConstants.USER_LOG_STATUS
-import id.asmith.bajalangclean.util.AppConstants.USER_LON
 import id.asmith.bajalangclean.util.LocationListenerUtil
 import id.asmith.bajalangclean.util.PreferencesUtil
 import org.jetbrains.anko.toast
@@ -58,8 +58,8 @@ class StartedViewModel : ViewModel(){
 
         mPrefs!!.putBoolean(USER_LOG_STATUS, true)
         mPrefs!!.putString(USER_LOG_IDENTITY, identity)
-        mPrefs!!.putString(USER_LAT, latitude)
-        mPrefs!!.putString(USER_LON, longitude)
+        mPrefs!!.putString(DEVICE_LAT, latitude)
+        mPrefs!!.putString(DEVICE_LON, longitude)
         mPrefs!!.putString(USER_CURRENT_CITY, city)
         mNavigator!!.startMainActivity()
 

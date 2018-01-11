@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.*
 import id.asmith.bajalangclean.R
 import id.asmith.bajalangclean.ui.main.MainViewModel
-import kotlinx.android.synthetic.main.fragment_main_place.*
+import kotlinx.android.synthetic.main.fragment_main_place.view.*
 
 /**
  * Created by Agus Adhi Sumitro on 10/01/2018.
@@ -22,15 +22,10 @@ class FragmentMainPlace : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.fragment_main_place, container, false)
         setHasOptionsMenu(true)
-        return inflater.inflate(R.layout.fragment_main_place, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        onClickedListener()
-
+        onClickedListener(view)
+        return view
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater){
@@ -38,19 +33,18 @@ class FragmentMainPlace : Fragment(){
         menu!!.findItem(R.id.action_search).isVisible = false
     }
 
-    private fun onClickedListener(){
+    private fun onClickedListener(view: View){
 
-        val city = mViewModel.getCurrentCity()
-
-        layout_main_restaurant.setOnClickListener {
-            val category = "restaurant"
-            mViewModel.getListPlace(city, category)
+        view.layout_main_restaurant.setOnClickListener {
+            mViewModel.replaceWithListPlace()
+            mViewModel.setPassingCategory("restaurant")
         }
 
-        layout_main_school.setOnClickListener {
-            val category = "school"
-            mViewModel.getListPlace(city, category)
+        view.layout_main_school.setOnClickListener {
+            mViewModel.replaceWithListPlace()
+            mViewModel.setPassingCategory("school")
         }
 
     }
+
 }

@@ -16,6 +16,42 @@ FYI: Current data in database are available just in this city - Kotamobagu and M
   - [Anko](https://github.com/Kotlin/anko)
   - [Gif Drawable](https://github.com/koral--/android-gif-drawable)
 
+### JSON Data
+
+    
+     List :  [
+                {
+                    "id": 11,
+                    "location_id": 2,
+                    "category_id": 1,
+                    "name": "wisata bahari seafood restaurant",
+                    "lat": 1.464274,
+                    "lon": 124.826148,
+                   
+                },
+                {
+                    "id": 12,
+                    "location_id": 2,
+                    "category_id": 1,
+                    "name": "rumah makan raja oci",
+                    "lat": 1.4887921,
+                    "lon": 124.847259,
+               
+                }
+             ]
+    
+    Detail : {
+                "status": 200,
+                "error": false,
+                "message": "success",
+                "detail": {
+                    "name": "universitas sam ratulangi",
+                    "lat": 1.4564212,
+                    "lon": 124.8282569
+                }
+             }
+
+    
 ## TODO List
   - [ ] Clean up code style.
 

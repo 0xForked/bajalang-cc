@@ -10,13 +10,11 @@ import android.view.Menu
 import android.view.MenuItem
 import id.asmith.bajalangclean.BajalangApp
 import id.asmith.bajalangclean.R
-import id.asmith.bajalangclean.data.remote.ApiService
-import id.asmith.bajalangclean.ui.main.fragment.FragmentDetailPlace
-import id.asmith.bajalangclean.ui.main.fragment.FragmentListPlace
 import id.asmith.bajalangclean.ui.main.fragment.FragmentMainPlace
+import id.asmith.bajalangclean.ui.main.fragment.detail.FragmentDetailPlace
+import id.asmith.bajalangclean.ui.main.fragment.list.FragmentListPlace
 import id.asmith.bajalangclean.ui.started.GetStartedActivity
 import id.asmith.bajalangclean.util.PreferencesUtil
-import id.asmith.bajalangclean.util.reactive.SchedulerProviderNavigation
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -25,8 +23,6 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), MainNavigation{
 
     @Inject lateinit var mPrefsUtil: PreferencesUtil
-    @Inject lateinit var mScheduler: SchedulerProviderNavigation
-    @Inject lateinit var mApiService : ApiService
 
     private val mViewModel: MainViewModel by lazy {
         ViewModelProviders.of(this).get(MainViewModel::class.java)
@@ -43,9 +39,7 @@ class MainActivity : AppCompatActivity(), MainNavigation{
 
             mViewModel.mainViewModel(
                     this,
-                    mPrefsUtil,
-                    mScheduler,
-                    mApiService)
+                    mPrefsUtil)
 
             mViewModel.fragmentTransition()
 
@@ -63,17 +57,12 @@ class MainActivity : AppCompatActivity(), MainNavigation{
 
             R.id.action_find_location -> toast("Find me")
             R.id.action_search -> toast("Search data")
-            R.id.action_settings -> toast("Settings")
+            R.id.action_update ->toast("Update data")
+            R.id.action_clear -> mViewModel.clearPrefs()
         }
 
         return true
     }
-
-    override fun replaceWithMainPlace() = replaceFragment(FragmentMainPlace())
-
-    override fun replaceWithListPlace() = replaceFragment(FragmentListPlace())
-
-    override fun replaceWithDetailPlace() = replaceFragment(FragmentDetailPlace())
 
     override fun startedActivity(){
         startActivity<GetStartedActivity>()
@@ -106,10 +95,12 @@ class MainActivity : AppCompatActivity(), MainNavigation{
         }
     }
 
-    private fun inject(){
-        BajalangApp
-                .mInstance
-                .mAppComponent
-                .inject(this)
-    }
+    override fun replaceWithMainPlace() = replaceFragment(FragmentMainPlace())
+
+    override fun replaceWithListPlace() = replaceFragment(FragmentListPlace())
+
+    override fun replaceWithDetailPlace() = replaceFragment(FragmentDetailPlace())
+
+    private fun inject(){ BajalangApp.mInstance.mAppComponent.inject(this) }
+
 }

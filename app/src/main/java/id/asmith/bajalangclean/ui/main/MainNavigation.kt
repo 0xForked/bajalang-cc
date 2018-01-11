@@ -18,5 +18,4 @@ interface MainNavigation {
     fun replaceWithDetailPlace()
 
 
-
 }

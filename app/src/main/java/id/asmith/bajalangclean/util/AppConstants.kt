@@ -12,8 +12,8 @@ object AppConstants {
     val USER_LOG_STATUS = "isUserDataExist"
     val USER_LOG_IDENTITY = "thisUserIdentity"
     val USER_CURRENT_CITY = "thisUserCurrentCity"
-    val USER_LAT = "thisUserLatitude"
-    val USER_LON = "thisUserLongitude"
+    val DEVICE_LAT = "thisUserLatitude"
+    val DEVICE_LON = "thisUserLongitude"
 
     //Remote url
     private val BASE_URL = "http://192.168.43.70/PHPproject/a-open-project/"

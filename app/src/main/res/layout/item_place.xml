@@ -6,7 +6,7 @@
     android:layout_margin="3dp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/layContentClick"
         android:clickable="true"
         android:background="?android:attr/selectableItemBackground"
@@ -23,25 +23,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/item_name"
+            android:capitalize="sentences"
             android:layout_marginTop="3dp"
-            android:textSize="@dimen/fifteen_sp"
+            android:textSize="@dimen/eighteen_sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-condensed"
             android:id="@+id/txtNameContent"
             android:layout_toEndOf="@+id/LogoContent"
-            android:layout_marginStart="@dimen/fifty_dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="@string/item_address"
-            android:textSize="@dimen/ten_sp"
-            android:layout_below="@+id/txtNameContent"
-            android:layout_alignStart="@+id/txtNameContent"
-            android:id="@+id/txtAddressContent"
-            android:layout_alignParentStart="@+id/txtNameContent" />
+            android:layout_marginStart="@dimen/twenty_dp" />
 
         <LinearLayout
-            android:layout_below="@id/txtAddressContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

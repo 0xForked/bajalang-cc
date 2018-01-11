@@ -30,4 +30,7 @@ class PreferencesUtil @Inject constructor(private val sharedPreferences: SharedP
     fun getString(key: String, defaultValue: String): String =
             sharedPreferences.getString(key, defaultValue)
 
+    fun clearPrefs(){
+        sharedPreferences.edit().clear().clear().apply()
+    }
 }

@@ -1,11 +1,8 @@
 package id.asmith.bajalangclean.ui.main
 
 import android.arch.lifecycle.ViewModel
-import android.util.Log
-import id.asmith.bajalangclean.data.remote.ApiService
 import id.asmith.bajalangclean.util.AppConstants.USER_CURRENT_CITY
 import id.asmith.bajalangclean.util.PreferencesUtil
-import id.asmith.bajalangclean.util.reactive.SchedulerProviderNavigation
 
 
 /**
@@ -18,51 +15,37 @@ class MainViewModel : ViewModel() {
 
     private var mPrefs: PreferencesUtil? = null
     private var mNavigator: MainNavigation? = null
-    private var mScheduler: SchedulerProviderNavigation? = null
-    private var mApiService: ApiService? = null
 
     fun mainViewModel(navigation: MainNavigation,
-                      preferences: PreferencesUtil,
-                      scheduler: SchedulerProviderNavigation,
-                      apiService: ApiService) {
+                      preferences: PreferencesUtil) {
 
         this.mNavigator = navigation
         this.mPrefs = preferences
-        this.mScheduler = scheduler
-        this.mApiService = apiService
 
     }
 
-    fun fragmentTransition(){
-        replaceWithMainPlace()
-    }
+    fun fragmentTransition(){ replaceWithMainPlace() }
 
     private fun replaceWithMainPlace() = mNavigator?.replaceWithMainPlace()
 
-    private fun replaceWithListPlace() = mNavigator?.replaceWithListPlace()
+    fun replaceWithListPlace() = mNavigator?.replaceWithListPlace()
 
-    private fun replaceWithDetailPlace() = mNavigator?.replaceWithDetailPlace()
+    fun replaceWithDetailPlace() = mNavigator?.replaceWithDetailPlace()
 
     fun getCurrentCity(): String{
         return mPrefs!!.getString(USER_CURRENT_CITY,
                 "city")
     }
 
-    fun getListPlace(city: String, category: String){
+    var getPassingCategory: String? = null
+    fun setPassingCategory(category: String) { this.getPassingCategory = category }
 
-        replaceWithListPlace()
+    var getPassingId: Int? = null
+    fun setPassingId(id: Int) { this.getPassingId = id }
 
-        mApiService!!.listPlace(city, category)
-                .subscribeOn(mScheduler!!.multi())
-                .observeOn(mScheduler!!.ui())
-                .subscribe({ onSuccess ->
-                    Log.d("Success", onSuccess.string())
-                }, { onError ->
-                    onError.printStackTrace()
-                })
+    fun clearPrefs(){
+        mPrefs!!.clearPrefs()
+        mNavigator!!.startedActivity()
     }
 
-    fun getDetailPlace(id: String){
-        replaceWithDetailPlace()
-    }
 }

@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/GSList"
+        android:id="@+id/rv_main_list_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
@@ -19,7 +19,7 @@
         tools:listitem="@layout/item_place" />
 
     <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/itemLoading"
+        android:id="@+id/image_main_list_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/loading"
@@ -28,5 +28,45 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:id="@+id/lay_main_error"
+        android:visibility="gone"
+        android:layout_width="@dimen/three_hundred_dp"
+        android:layout_height="@dimen/three_hundred_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/seventy_dp"
+            android:layout_centerHorizontal="true">
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/thirty_sp"
+                android:text="@string/oops"/>
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/twenty_sp"
+                android:layout_below="@+id/text1"
+                android:text="@string/something_went_wrong"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/text_reload_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/twenty_sp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/seventy_dp"
+            android:text="@string/refresh"/>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

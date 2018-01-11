@@ -4,6 +4,8 @@ import dagger.Component
 import id.asmith.bajalangclean.di.module.AppModule
 import id.asmith.bajalangclean.di.module.RemoteModule
 import id.asmith.bajalangclean.ui.main.MainActivity
+import id.asmith.bajalangclean.ui.main.fragment.detail.FragmentDetailPlace
+import id.asmith.bajalangclean.ui.main.fragment.list.FragmentListPlace
 import id.asmith.bajalangclean.ui.splash.SplashActivity
 import id.asmith.bajalangclean.ui.started.GetStartedActivity
 import javax.inject.Singleton
@@ -29,5 +31,9 @@ interface AppComponent {
     fun inject(target: GetStartedActivity)
 
     fun inject(target: MainActivity)
+
+    fun inject(target: FragmentListPlace)
+
+    fun inject(target: FragmentDetailPlace)
 
 }
