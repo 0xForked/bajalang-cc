@@ -1,4 +1,4 @@
-package id.asmith.bajalangclean.data.model
+package id.asmith.bajalangclean.data.remote.model
 
 
 /**

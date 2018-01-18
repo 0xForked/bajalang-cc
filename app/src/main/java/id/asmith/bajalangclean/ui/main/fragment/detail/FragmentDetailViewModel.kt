@@ -35,7 +35,7 @@ class FragmentDetailViewModel : ViewModel() {
 
     }
 
-    fun getDetailPlace(placeId: Int){
+    fun getDetailPlace(placeId: Int) {
 
         mApiService!!.detailPlace(placeId)
                 .subscribeOn(mScheduler!!.multi())
@@ -62,10 +62,12 @@ class FragmentDetailViewModel : ViewModel() {
 
                 }, { onError ->
 
-                    onError.printStackTrace()
                     onError.let {
+
+                        it.printStackTrace()
                         mNavigator!!.showErrorMessage()
                         mNavigator!!.hideLoading()
+
                     }
 
                 })

@@ -8,12 +8,14 @@ import id.asmith.bajalangclean.R
 import id.asmith.bajalangclean.ui.main.MainActivity
 import id.asmith.bajalangclean.ui.started.GetStartedActivity
 import id.asmith.bajalangclean.util.PreferencesUtil
+import id.asmith.bajalangclean.util.reactive.SchedulerProviderNavigation
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity(), SplashNavigation {
 
     @Inject lateinit var mPrefsUtil: PreferencesUtil
+    @Inject lateinit var mScheduler: SchedulerProviderNavigation
 
     private val mViewModel: SplashViewModel by lazy {
         ViewModelProviders.of(this).get(SplashViewModel::class.java)
@@ -25,7 +27,7 @@ class SplashActivity : AppCompatActivity(), SplashNavigation {
 
         inject()
 
-        mViewModel.splashViewModel(this, mPrefsUtil)
+        mViewModel.splashViewModel(this, mPrefsUtil, mScheduler)
         mViewModel.startTask()
 
     }

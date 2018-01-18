@@ -9,15 +9,15 @@ package id.asmith.bajalangclean.util
 object AppConstants {
 
     //Prefs constant
-    val USER_LOG_STATUS = "isUserDataExist"
-    val USER_LOG_IDENTITY = "thisUserIdentity"
-    val USER_CURRENT_CITY = "thisUserCurrentCity"
-    val DEVICE_LAT = "thisUserLatitude"
-    val DEVICE_LON = "thisUserLongitude"
+    const val USER_LOG_STATUS = "isUserDataExist"
+    const val USER_LOG_IDENTITY = "thisUserIdentity"
+    const val USER_CURRENT_CITY = "thisUserCurrentCity"
+    const val DEVICE_LAT = "thisUserLatitude"
+    const val DEVICE_LON = "thisUserLongitude"
 
     //Remote url
-    private val BASE_URL = "http://192.168.43.70/PHPproject/a-open-project/"
-    private val NAME_AND_VERSION = "rest-service/v1.0/place/location/"
-    val API_URL = BASE_URL + NAME_AND_VERSION
+    private const val BASE_URL = "http://192.168.43.70/PHPproject/a-open/"
+    private const val NAME_AND_VERSION = "rest-service/v1.0/place/location/"
+    const val API_URL = BASE_URL + NAME_AND_VERSION
 
 }

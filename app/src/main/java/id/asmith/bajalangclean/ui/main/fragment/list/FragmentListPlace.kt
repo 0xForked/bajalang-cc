@@ -8,12 +8,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import id.asmith.bajalangclean.BajalangApp
 import id.asmith.bajalangclean.R
-import id.asmith.bajalangclean.data.model.Place
 import id.asmith.bajalangclean.data.remote.ApiService
+import id.asmith.bajalangclean.data.remote.model.Place
 import id.asmith.bajalangclean.ui.main.MainViewModel
+import id.asmith.bajalangclean.ui.main.fragment.list.rv.DataAdapter
+import id.asmith.bajalangclean.ui.main.fragment.list.rv.DataListener
 import id.asmith.bajalangclean.util.reactive.SchedulerProviderNavigation
 import kotlinx.android.synthetic.main.fragment_main_list_place.*
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -22,7 +23,7 @@ import javax.inject.Inject
  * aasumitro@gmail.com
  */
 
-class FragmentListPlace : Fragment(), DataAdapter.Listener, FragmentListNavigation {
+class FragmentListPlace : Fragment(), DataListener, FragmentListNavigation {
 
     @Inject lateinit var mApiService : ApiService
     @Inject lateinit var mScheduler: SchedulerProviderNavigation
@@ -69,7 +70,7 @@ class FragmentListPlace : Fragment(), DataAdapter.Listener, FragmentListNavigati
         rv_main_list_content.layoutManager = layoutManager
     }
 
-    override fun initAdapter(){
+    override fun initAdapter() {
         rv_main_list_content.adapter =
                 DataAdapter(mViewModelThis.placeList, this)
     }
@@ -77,7 +78,6 @@ class FragmentListPlace : Fragment(), DataAdapter.Listener, FragmentListNavigati
     override fun onItemClick(place: Place) {
         mViewModelMain.setPassingId(place.id)
         mViewModelMain.replaceWithDetailPlace()
-        activity?.toast("${place.name} Clicked!")
     }
 
     override fun hideErrorMessage() { lay_main_error.visibility = View.GONE }
@@ -92,7 +92,7 @@ class FragmentListPlace : Fragment(), DataAdapter.Listener, FragmentListNavigati
 
     override fun showList() { rv_main_list_content.visibility = View.VISIBLE  }
 
-    private fun inject(){ BajalangApp.mInstance.mAppComponent.inject(this) }
+    private fun inject() { BajalangApp.mInstance.mAppComponent.inject(this) }
 
     override fun onDetach() {
         super.onDetach()

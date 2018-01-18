@@ -1,6 +1,6 @@
 package id.asmith.bajalangclean.data.remote
 
-import id.asmith.bajalangclean.data.model.Place
+import id.asmith.bajalangclean.data.remote.model.Place
 import io.reactivex.Observable
 import okhttp3.ResponseBody
 import retrofit2.http.GET

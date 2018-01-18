@@ -58,7 +58,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
     //Other
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
+    implementation "pl.droidsonroids.gif:android-gif-drawable:$gif_drawable_version"
 
     //Testing libs
     testImplementation 'junit:junit:4.12'

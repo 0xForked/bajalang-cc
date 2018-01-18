@@ -4,7 +4,7 @@ buildscript {
 
     ext {
 
-        kotlin_version = '1.2.10'
+        kotlin_version = '1.2.20'
         anko_version='0.10.3'
         android_support_version = '27.0.2'
         constraint_layout_version = '1.0.2'
@@ -13,8 +13,9 @@ buildscript {
         okhttp_version = '3.9.1'
         rxjava_version = '2.1.7'
         rxandroid_version = '2.0.1'
-        arch_component_version = "1.0.0"
-        dagger2_version = "2.14.1"
+        arch_component_version = '1.0.0'
+        dagger2_version = '2.14.1'
+        gif_drawable_version = '1.2.10'
 
     }
 

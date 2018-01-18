@@ -3,8 +3,9 @@ package id.asmith.bajalangclean.ui.splash
 import android.arch.lifecycle.ViewModel
 import id.asmith.bajalangclean.util.AppConstants.USER_LOG_STATUS
 import id.asmith.bajalangclean.util.PreferencesUtil
-import java.util.*
-
+import id.asmith.bajalangclean.util.reactive.SchedulerProviderNavigation
+import io.reactivex.Observable
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Agus Adhi Sumitro on 05/01/2018.
@@ -16,10 +17,14 @@ class SplashViewModel : ViewModel() {
 
     private var mNavigator: SplashNavigation? = null
     private var mPrefs: PreferencesUtil? = null
+    private var mSchedulers: SchedulerProviderNavigation? = null
 
-    fun splashViewModel(navigator: SplashNavigation, preferences: PreferencesUtil) {
+    fun splashViewModel(navigator: SplashNavigation,
+                        preferences: PreferencesUtil,
+                        schedulers: SchedulerProviderNavigation) {
         this.mNavigator = navigator
         this.mPrefs = preferences
+        this.mSchedulers = schedulers
     }
 
     private fun isUserDataExist(): Boolean{
@@ -28,19 +33,13 @@ class SplashViewModel : ViewModel() {
     }
 
     fun startTask() {
-        Timer().schedule(object : TimerTask() {
-            override fun run() {
-                try {
 
-                    changeActivity()
+        Observable.interval(3, TimeUnit.SECONDS)
+                .take(1)
+                .observeOn(mSchedulers!!.ui())
+                .observeOn(mSchedulers!!.multi())
+                .subscribe { changeActivity() }
 
-                } catch (e: Exception) {
-
-                    e.printStackTrace()
-
-                }
-            }
-        }, 2000)
     }
 
     private fun changeActivity() {

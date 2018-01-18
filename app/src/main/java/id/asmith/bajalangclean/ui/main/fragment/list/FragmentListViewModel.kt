@@ -1,8 +1,8 @@
 package id.asmith.bajalangclean.ui.main.fragment.list
 
 import android.arch.lifecycle.ViewModel
-import id.asmith.bajalangclean.data.model.Place
 import id.asmith.bajalangclean.data.remote.ApiService
+import id.asmith.bajalangclean.data.remote.model.Place
 import id.asmith.bajalangclean.util.reactive.SchedulerProviderNavigation
 
 
@@ -12,7 +12,7 @@ import id.asmith.bajalangclean.util.reactive.SchedulerProviderNavigation
  * aasumitro@gmail.com
  */
 
-class FragmentListViewModel : ViewModel(){
+class FragmentListViewModel : ViewModel() {
 
     private var mNavigator: FragmentListNavigation? = null
     private var mApiService: ApiService? = null
@@ -30,7 +30,7 @@ class FragmentListViewModel : ViewModel(){
 
     }
 
-    fun getListPlace(city: String, category: String){
+    fun getListPlace(city: String, category: String) {
 
         mApiService!!.listPlace(city, category)
                 .subscribeOn(mScheduler!!.multi())
